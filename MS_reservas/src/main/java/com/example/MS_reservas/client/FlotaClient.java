@@ -5,7 +5,7 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-@FeignClient(name = "MS-flota", url = "http://localhost:8082/api/flota/asientos")
+@FeignClient(name = "MS-flota", url = "${app.clients.flota-url}/api/flota/asientos")
 public interface FlotaClient {
 
     @GetMapping("/{id}")

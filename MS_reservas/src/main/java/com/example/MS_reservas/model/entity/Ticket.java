@@ -27,4 +27,25 @@ public class Ticket {
 
     @Column(name = "id_transaccion", nullable = false)
     private Long idTransaccion;
+
+    public Long getId() { return id; }
+    public Long getIdComprador() { return idComprador; }
+    public Long getIdPasajero() { return idPasajero; }
+    public Long getIdAsientoVuelo() { return idAsientoVuelo; }
+    public Long getIdTransaccion() { return idTransaccion; }
+
+    public Ticket(Long id, Long idComprador, Long idPasajero, Long idAsientoVuelo, Long idTransaccion) {
+        this.id = id;
+        this.idComprador = idComprador;
+        this.idPasajero = idPasajero;
+        this.idAsientoVuelo = idAsientoVuelo;
+        this.idTransaccion = idTransaccion;
+    }
+
+    public Ticket() { }
+
+    public void setIdComprador(Long idComprador) { this.idComprador = idComprador; }
+    public void setIdPasajero(Long idPasajero) { this.idPasajero = idPasajero; }
+    public void setIdAsientoVuelo(Long idAsientoVuelo) { this.idAsientoVuelo = idAsientoVuelo; }
+    public void setIdTransaccion(Long idTransaccion) { this.idTransaccion = idTransaccion; }
 }

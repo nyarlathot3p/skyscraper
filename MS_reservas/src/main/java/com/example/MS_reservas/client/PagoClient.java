@@ -6,7 +6,7 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-@FeignClient(name = "MS-pagos", url = "http://localhost:9091/api/pagos")
+@FeignClient(name = "MS-pagos", url = "${app.clients.pagos-url}/api/pagos")
 public interface PagoClient {
 
     @PostMapping("/procesar")

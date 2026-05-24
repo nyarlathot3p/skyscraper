@@ -11,4 +11,16 @@ public class PagoResponseDTO {
     private Long idTransaccion;
     private String estado; 
     private String fechaTransaccion;
+
+    public Long getIdTransaccion() {
+        return idTransaccion;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public String getFechaTransaccion() {
+        return fechaTransaccion;
+    }
 }
