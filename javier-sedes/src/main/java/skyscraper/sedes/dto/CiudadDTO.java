@@ -1,0 +1,17 @@
+package skyscraper.sedes.dto;
+
+import lombok.Data;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotBlank;
+
+@Data
+public class CiudadDTO {
+    @NotNull(message = "El id no puede ser nulo")
+    private Long id;
+    
+    @NotBlank(message = "El nombre no puede estar vacío")
+    private String nombre;
+    
+    @NotNull(message = "La región no puede ser nula")
+    private RegionDTO region;
+}
