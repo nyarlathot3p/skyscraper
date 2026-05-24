@@ -2,6 +2,7 @@ package com.example.MS_vuelos.model.dto;
 
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,6 +18,7 @@ public class PrecioDTO {
     private Long id;
 
     @NotNull(message = "El id del asiento es obligatorio")
+    @Positive(message = "El id del asiento debe ser mayor a 0")
     private Long idAsiento;
 
     @NotNull(message = "El precio actual es obligatorio")
