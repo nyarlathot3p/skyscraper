@@ -2,7 +2,8 @@ package skyscraper.sedes.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import skyscraper.sedes.clients.CiudadClientRest;
+
+import skyscraper.sedes.controller.SedesController;
 import skyscraper.sedes.dto.CiudadDTO;
 import skyscraper.sedes.repository.AeropuertoRepository;
 import skyscraper.sedes.model.Aeropuerto;
@@ -15,7 +16,7 @@ public class AeropuertoService {
     @Autowired
     private AeropuertoRepository aeropuertoRepository;
     @Autowired
-    private CiudadClientRest ciudadClientRest;
+    private SedesController ciudadClientRest;
 
 
 
