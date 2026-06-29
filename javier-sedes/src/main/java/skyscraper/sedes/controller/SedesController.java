@@ -1,32 +1,40 @@
 package skyscraper.sedes.controller;
 
-import skyscraper.sedes.dto.CiudadDTO;
+import java.util.List;
 
-import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import java.util.List;
-import com.fasterxml.jackson.annotation.JsonTypeInfo.As;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.models.annotations.OpenAPI30;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import skyscraper.sedes.client.CiudadClientRest;
+import skyscraper.sedes.model.Aeropuerto;
+import skyscraper.sedes.service.AeropuertoService;
 
-@FeignClient(name = "ciudad-service", url = "http://localhost:8083/api/v1/geaografia")
-public interface SedesController {
-    @GetMapping("/ciudad/{id}/nombre")
-    @Operation(summary = "Obtener nombre de ciudad por ID", description = "Devuelve el nombre de una ciudad específica dado su ID")
-    public String getNombreById(@PathVariable("id") Long id);
 
-    @GetMapping("/ciudad/{nombre}/id")
-    @Operation(summary = "Obtener ID de ciudad por nombre", description = "Devuelve el ID de una ciudad específica dado su nombre")
-    public Long getIdByNombre(@PathVariable("nombre") String nombre);
+@RestController
+@RequestMapping("/api/sedes")
+@Tag(name = "Sedes", description = "Operaciones relacionadas con sedes y aeropuertos")
 
-    @GetMapping("/ciudades/region/{id}")
-    @Operation(summary = "Obtener ciudades por ID de región", description = "Devuelve una lista de ciudades asociadas a una región específica dado su ID")
-    public List<CiudadDTO> findByRegionId(@PathVariable("id") Long regionId);
-    
-    @GetMapping("/ciudades/region/nombre/{nombre}")
-    @Operation(summary = "Obtener ciudades por nombre de región", description = "Devuelve una lista de ciudades asociadas a una región específica dado su nombre")
-    public List<CiudadDTO> getCiudadesByRegionNombre(@PathVariable("nombre") String nombre);
+public class SedesController {
+    @Autowired
+    private AeropuertoService aeropuertoService;
+    @Autowired
+    private CiudadClientRest ciudadClientRest;
+
+    @GetMapping("/aeropuertos/ciudad/{nombre}")
+    @Operation(summary = "Obtener aeropuertos por nombre de ciudad", description = "Devuelve una lista de aeropuertos asociados a una ciudad específica dado su nombre")
+    public List<Aeropuerto> getAeropuertosByCiudadNombre(@PathVariable String nombre) {
+        return aeropuertoService.getAeropuertosByCiudadNombre(nombre);
+    }
+
+    @GetMapping("/aeropuertos/region/{nombre}")
+    @Operation(summary = "Obtener aeropuertos por nombre de región", description = "Devuelve una lista de aeropuertos asociados a una región específica dado su nombre")
+    public List<Aeropuerto> getAeropuertosByRegionNombre(@PathVariable String nombre) {
+        return aeropuertoService.getAeropuertosByRegionNombre(nombre);
+    }
 
 }

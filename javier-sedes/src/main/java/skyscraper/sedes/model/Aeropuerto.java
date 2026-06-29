@@ -1,11 +1,13 @@
 package skyscraper.sedes.model;
 
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Data;
 
 @Data
 @Entity
 @Table(name = "aeropuerto")
+@Builder
 
 public class Aeropuerto {
     @Id
