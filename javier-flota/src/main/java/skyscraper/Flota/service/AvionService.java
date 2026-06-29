@@ -87,5 +87,14 @@ public class AvionService {
         }
     }
 
+    public boolean crearAvion(Avion avion) {
+        if (avionRepository.findById(avion.getId()) == null) {
+            avionRepository.save(avion);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 
 }

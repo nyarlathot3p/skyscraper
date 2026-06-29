@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import skyscraper.Flota.model.Avion;
 import skyscraper.Flota.service.AvionService;
-import skyscraper.Flota.repository.aerolineaReporsitory;
+import skyscraper.Flota.repository.AerolineaRepository;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -30,7 +30,7 @@ public class FlotaController {
     @Autowired
     private VueloService vueloService;
     @Autowired
-    private aerolineaReporsitory aerolineaRepository;
+    private AerolineaRepository aerolineaRepository;
     @Autowired
     private AsientoClientRest asientoClientRest;
 

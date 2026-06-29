@@ -1,12 +1,14 @@
 package skyscraper.Flota.model;
 
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Data;
 
 import java.util.List;
 @Data
 @Entity
 @Table(name = "avion")
+@Builder
 
 public class Avion {
     @Id
@@ -18,6 +20,8 @@ public class Avion {
     private int columnas;
     @OneToMany(mappedBy = "avion",cascade = CascadeType.ALL)
     private List<Vuelo> vuelos;
+
+
     
 
 }
