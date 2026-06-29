@@ -2,10 +2,12 @@ package skyscraper.puestos.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Data;
 @Data
 @Entity
 @Table(name = "asiento")
+@Builder
 public class Asiento {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

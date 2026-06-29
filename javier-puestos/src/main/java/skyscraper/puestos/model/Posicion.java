@@ -1,11 +1,13 @@
 package skyscraper.puestos.model;
 
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Data;
 import java.util.List;
 @Data
 @Entity
 @Table(name = "posicion")
+@Builder
 public class Posicion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

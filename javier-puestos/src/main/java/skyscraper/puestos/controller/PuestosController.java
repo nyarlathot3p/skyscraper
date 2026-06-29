@@ -38,7 +38,7 @@ public class PuestosController {
 
     @GetMapping("/asientos/fila/{fila}")
     @Operation(summary = "Obtener asientos por fila", description = "Devuelve una lista de asientos asociados a una fila específica")
-    public List<Asiento> getAsientosByFila(@PathVariable String fila) {
+    public List<Asiento> getAsientosByFila(@PathVariable int fila) {
         return asientoService.getAsientosByFila(fila);
     }
 

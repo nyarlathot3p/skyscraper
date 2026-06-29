@@ -22,29 +22,38 @@ public class AsientoService {
         return asientoRepository.findByPosicionNombre(nombrePosicion);
     }
     //asientos por fila
-    public List<Asiento> getAsientosByFila(String fila) {
+    public List<Asiento> getAsientosByFila(int fila) {
         return asientoRepository.findByFila(fila);
     }
 
     //dejar un asiento como ocupado
-    public void ocuparAsiento(Long asientoId) {
+    public boolean ocuparAsiento(Long asientoId) {
+    if (getAsientoById(asientoId) != null) {
         asientoRepository.ocuparAsiento(asientoId);
+        return true;
+        }
+        else
+        {
+        return  false;
+        }
     }
 
     //desocupar asiento
-    public void desocuparAsiento(Long asientoId) {
+    public boolean desocuparAsiento(Long asientoId) {
+    if (getAsientoById(asientoId) != null) {
         asientoRepository.desocuparAsiento(asientoId);
+        return true;
+        }
+        else
+        {
+        return  false;
+        }
     }
 
     //asientos de un avion
     public List<Asiento> getAsientosByAvionId(Long avionId) {
         return asientoRepository.findByAvionId(avionId);
     }
-
-    //asientos de una clase y avion disponibles
-    /* public List<Asiento> getAsientosByAvionIdAndClaseNombre(Long avionId, String nombreClase) {
-        return asientoRepository.findByAvionIdAndClaseNombre(avionId, nombreClase);
-    } */
 
     //asiento por su id
     public Asiento getAsientoById(Long asientoId) {

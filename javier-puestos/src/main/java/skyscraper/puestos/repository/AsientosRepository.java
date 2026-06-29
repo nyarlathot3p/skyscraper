@@ -19,7 +19,7 @@ public interface AsientosRepository extends JpaRepository<Asiento, Long> {
     
     //asientos por fila
     @Query("SELECT a FROM Asiento a WHERE a.fila = :fila")
-    List<Asiento> findByFila(String fila);
+    List<Asiento> findByFila(int fila);
 
     //dejar un asiento como ocupado
     @Query("UPDATE Asiento a SET a.ocupado = true WHERE a.id = :asientoId")
@@ -33,8 +33,6 @@ public interface AsientosRepository extends JpaRepository<Asiento, Long> {
     @Query("SELECT a FROM Asiento a WHERE a.avion.id = :avionId")
     List<Asiento> findByAvionId(Long avionId);
 
-    /* @Query("SELECT a FROM Asiento a WHERE a.avion.id = :avionId AND a.disponible = true AND a.clase.nombre = :nombreClase")
-    List<Asiento> findByAvionIdAndClaseNombre(Long avionId, String nombreClase); */
 
     //datos de un asiento por su id
     @Query("SELECT a FROM Asiento a WHERE a.id = :id")
