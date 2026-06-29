@@ -1,11 +1,13 @@
 package skyscraper.geaografia.model;
 
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Data;
 
 @Data
 @Entity
 @Table(name = "ciudades")
+@Builder
 public class Ciudad {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
