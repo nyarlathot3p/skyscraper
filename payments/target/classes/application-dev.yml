@@ -1,0 +1,21 @@
+server:
+  port: 9091
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/payments_db?serverTimezone=UTC&useSSL=false
+    username: chef
+    password: "!@#!@#31415"
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    #properties:
+    #  hibernate:
+    #    format_sql: true    
+
+springdoc:
+  api-docs:
+    enabled: true
+  swagger-ui:
+    enabled: true

@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: cl.skyscraper.payments.service.PaymentMethodServiceTest
+-------------------------------------------------------------------------------
+Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 3.823 s -- in cl.skyscraper.payments.service.PaymentMethodServiceTest
