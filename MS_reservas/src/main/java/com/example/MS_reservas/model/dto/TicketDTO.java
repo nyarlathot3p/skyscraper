@@ -35,11 +35,4 @@ public class TicketDTO {
     public Long getIdAsientoVuelo() { return idAsientoVuelo; }
     public Long getIdTransaccion() { return idTransaccion; }
 
-    public TicketDTO(Long id, Long idComprador, Long idPasajero, Long idAsientoVuelo, Long idTransaccion) {
-        this.id = id;
-        this.idComprador = idComprador;
-        this.idPasajero = idPasajero;
-        this.idAsientoVuelo = idAsientoVuelo;
-        this.idTransaccion = idTransaccion;
-    }
 }

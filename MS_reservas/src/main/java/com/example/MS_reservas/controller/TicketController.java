@@ -9,7 +9,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import com.example.MS_reservas.controller.assembler.TicketModelAssembler;
+import org.springframework.hateoas.CollectionModel;
+import org.springframework.hateoas.EntityModel;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
+
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @Validated
@@ -19,24 +26,38 @@ public class TicketController {
     @Autowired
     private TicketService service;
 
+    @Autowired
+    private TicketModelAssembler assembler;
+
     @GetMapping
-    public ResponseEntity<List<TicketDTO>> getAll() {
-        return ResponseEntity.ok(service.getAll());
+    public ResponseEntity<CollectionModel<EntityModel<TicketDTO>>> getAll() {
+        List<TicketDTO> tickets = service.getAll();
+        List<EntityModel<TicketDTO>> ticketModels = tickets.stream()
+                .map(assembler::toModel)
+                .collect(Collectors.toList());
+
+        CollectionModel<EntityModel<TicketDTO>> collectionModel = CollectionModel.of(ticketModels,
+                linkTo(methodOn(TicketController.class).getAll()).withSelfRel().withType("GET"));
+
+        return ResponseEntity.ok(collectionModel);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<TicketDTO> getById(@PathVariable Long id) {
-        return ResponseEntity.ok(service.getById(id));
+    public ResponseEntity<EntityModel<TicketDTO>> getById(@PathVariable Long id) {
+        TicketDTO dto = service.getById(id);
+        return ResponseEntity.ok(assembler.toModel(dto));
     }
 
     @PostMapping
-    public ResponseEntity<TicketDTO> save(@Valid @RequestBody TicketDTO dto) {
-        return new ResponseEntity<>(service.save(dto), HttpStatus.CREATED);
+    public ResponseEntity<EntityModel<TicketDTO>> save(@Valid @RequestBody TicketDTO dto) {
+        TicketDTO saved = service.save(dto);
+        return new ResponseEntity<>(assembler.toModel(saved), HttpStatus.CREATED);
     }
 
     @PostMapping("/comprar")
-    public ResponseEntity<TicketDTO> comprarTicket(@Valid @RequestBody com.example.MS_reservas.model.dto.ReservaRequestDTO request) {
-        return new ResponseEntity<>(service.comprarTicket(request), HttpStatus.CREATED);
+    public ResponseEntity<EntityModel<TicketDTO>> comprarTicket(@Valid @RequestBody com.example.MS_reservas.model.dto.ReservaRequestDTO request) {
+        TicketDTO bought = service.comprarTicket(request);
+        return new ResponseEntity<>(assembler.toModel(bought), HttpStatus.CREATED);
     }
 
     @DeleteMapping("/{id}")

@@ -23,9 +23,4 @@ public class PagoRequestDTO {
     @Positive(message = "El id del comprador debe ser mayor a 0")
     private Long idComprador;
 
-    public PagoRequestDTO(Double valorTransaccion, Long idMedioPago, Long idComprador) {
-        this.valorTransaccion = valorTransaccion;
-        this.idMedioPago = idMedioPago;
-        this.idComprador = idComprador;
-    }
 }
