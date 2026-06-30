@@ -1,18 +1,5 @@
-server:
-    port: 9091
-
-application:
-    name: payments
-
 spring:
-    datasource:
-        url: jdbc:mysql://localhost:3306/payments_db?serverTimezone=UTC&useSSL=false
-        username: chef
-        password: 
-    jpa:
-        hibernate:
-            ddl-auto: update
-        properties:
-            hibernate:
-                show-sql: true
-                format_sql: true    
+  application:
+    name: payments
+  profiles:
+    active: dev

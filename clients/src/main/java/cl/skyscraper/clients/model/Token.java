@@ -1,6 +1,8 @@
 package cl.skyscraper.clients.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import cl.skyscraper.clients.util.Messages;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -47,6 +49,7 @@ public class Token {
 
     public boolean expired;
 
+    @JsonIgnore
     @ManyToOne(fetch =  FetchType.LAZY)
     @JoinColumn(name = "user_id")
     @NotNull(message = "Usuario no puede ser nulo")

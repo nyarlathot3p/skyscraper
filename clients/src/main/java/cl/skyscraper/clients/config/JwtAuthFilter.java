@@ -36,6 +36,15 @@ public class JwtAuthFilter extends OncePerRequestFilter {
     private final UserRepository userRepository;
 
     @Override
+    protected boolean shouldNotFilter(HttpServletRequest request) {
+        String path = request.getRequestURI();
+        return path.startsWith("/swagger-ui/") || 
+               path.startsWith("/v3/api-docs") || 
+               path.equals("/doc/swagger-ui.html") ||
+               path.startsWith("/api_clients/v1/auth/");
+    }
+
+    @Override
     protected void doFilterInternal(
         @NonNull HttpServletRequest request,
         @NonNull HttpServletResponse response,
@@ -55,7 +64,9 @@ public class JwtAuthFilter extends OncePerRequestFilter {
 
         final String jwtToken = authHeader.substring(7);
         final String userEmail = jwtService.extractUsername(jwtToken);
+
         if (userEmail == null || SecurityContextHolder.getContext().getAuthentication() != null) {
+            filterChain.doFilter(request, response); // añadido para swagger
             return;
         }
 
@@ -76,6 +87,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
     
         final boolean isTokenValid =  jwtService.isTokenValid(jwtToken, user.get());
         if(!isTokenValid) {
+            filterChain.doFilter(request, response); // añadido para swagger
             return;
         }
 
@@ -90,4 +102,5 @@ public class JwtAuthFilter extends OncePerRequestFilter {
         filterChain.doFilter(request, response);
 
     }
+
 }

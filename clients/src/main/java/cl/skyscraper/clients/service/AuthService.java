@@ -48,7 +48,6 @@ public class AuthService {
         var jwtRefreshToken = jwtService.generateRefreshToken(user);
         saveUserToken(savedUser, jwtToken);
         return new TokenResponseDTO(jwtToken, jwtRefreshToken);
-
     }
 
     public TokenResponseDTO login(LoginRequestDTO request){

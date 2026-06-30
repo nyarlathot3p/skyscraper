@@ -33,9 +33,11 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-            .csrf(AbstractHttpConfigurer::disable) // Deshabilitamos CSRF porque usaremos JWT
+            .csrf(AbstractHttpConfigurer::disable) 
             .authorizeHttpRequests(req -> 
             req 
+                .requestMatchers("/v3/api-docs/**", "/swagger-ui/**", "/doc/swagger-ui.html")
+                    .permitAll()
                 .requestMatchers("/api_clients/v1/auth/**")
                     .permitAll()
                 .requestMatchers(HttpMethod.GET,"/api_clients/v1/reviews/**") 

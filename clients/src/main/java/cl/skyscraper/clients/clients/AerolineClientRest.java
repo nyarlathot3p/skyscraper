@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import cl.skyscraper.clients.dto.AerolineDTO;
 
-@FeignClient(name="ms-infra-aeroportuaria", url="localhost:8081/api/v1/aerolineas")
+@FeignClient(name="Flota", url="localhost:8082/api/v1/aerolinea")
 public interface AerolineClientRest {
 
     @GetMapping

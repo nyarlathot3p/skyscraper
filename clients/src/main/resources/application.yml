@@ -1,24 +1,5 @@
-server:
-    port: 9090
-
-application:
-    name: clients
-    security:
-        jwt:
-            secret-key: 
-            expiration: 86400000
-            refresh-token:
-                expiration: 604800000
-
 spring:
-    datasource:
-        url: jdbc:mysql://localhost:3306/clients_db?serverTimezone=UTC&useSSL=false
-        username: chef
-        password: 
-    jpa:
-        hibernate:
-            ddl-auto: update
-        properties:
-            hibernate:
-                show-sql: true
-                format_sql: true    
+  application:
+    name: clients
+  profiles:
+    active: dev
