@@ -11,21 +11,22 @@ import java.util.List;
 import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.bean.override.mockito.MockitoBean;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import cl.skyscraper.payments.exception.ResourceNotFoundException;
 import cl.skyscraper.payments.model.PaymentMethod;
 import cl.skyscraper.payments.repository.PaymentMethodRepository;
 
-@SpringBootTest
+@ExtendWith(MockitoExtension.class)
 public class PaymentMethodServiceTest {
 
-    @Autowired
+    @InjectMocks
     private PaymentMethodService paymentMethodService;
 
-    @MockitoBean
+    @Mock
     private PaymentMethodRepository paymentMethodRepository;
 
     @Test
