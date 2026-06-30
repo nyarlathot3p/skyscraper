@@ -73,22 +73,23 @@ public class AvionService {
     }
 
     public int asientosDisponiblesEnAvion(long avionId) {
-        List<AsientoDTO> asientosUsados= asientoClientRest.getAsientosByAvionId(avionId);
-        for (AsientoDTO asiento : asientosUsados) {
-            if (asiento.isDisponible()) {
-                asientosUsados.remove(asiento);
-            }
+        List<AsientoDTO> asientos = asientoClientRest.getAsientosByAvionId(avionId);
+        long ocupados = 0;
+        if (asientos != null) {
+            ocupados = asientos.stream()
+                               .filter(asiento -> !asiento.isDisponible())
+                               .count();
         }
-        Optional <Avion> avion = avionRepository.findById(avionId);
+        Optional<Avion> avion = avionRepository.findById(avionId);
         if (avion.isPresent()) {
-            return avion.get().getCapacidad() - asientosUsados.size();
+            return (int) (avion.get().getCapacidad() - ocupados);
         } else {
             return 0;
         }
     }
 
     public boolean crearAvion(Avion avion) {
-        if (avionRepository.findById(avion.getId()) == null) {
+        if (avionRepository.findById(avion.getId()).isEmpty()) {
             avionRepository.save(avion);
             return true;
         } else {

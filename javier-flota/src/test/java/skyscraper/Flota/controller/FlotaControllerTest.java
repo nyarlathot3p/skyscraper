@@ -2,12 +2,10 @@ package skyscraper.Flota.controller;
 
 import org.aspectj.internal.lang.annotation.ajcDeclareAnnotation;
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
 
-
-
-
-@SpringBootTest
+@ExtendWith(MockitoExtension.class)
 public class FlotaControllerTest {
 
 

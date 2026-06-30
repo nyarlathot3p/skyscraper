@@ -3,23 +3,21 @@ package skyscraper.geaografia.service;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-import org.apiguardian.api.API;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.mockito.junit.jupiter.MockitoExtension;
 import skyscraper.geaografia.model.Ciudad;
 import skyscraper.geaografia.repository.CiudadRepository;
 import skyscraper.geaografia.model.Region;
 
-import java.beans.Transient;
 import java.util.List;
 
-@SpringBootTest
+@ExtendWith(MockitoExtension.class)
 public class CiudadServiceTest {
 
-    
-    @Autowired
+    @InjectMocks
     private CiudadService ciudadService;
 
     @Mock

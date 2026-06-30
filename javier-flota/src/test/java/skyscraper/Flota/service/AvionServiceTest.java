@@ -3,23 +3,22 @@ package skyscraper.Flota.service;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-import org.apiguardian.api.API;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.mockito.junit.jupiter.MockitoExtension;
 import skyscraper.Flota.clients.AsientoClientRest;
 import skyscraper.Flota.dto.AsientoDTO;
 import skyscraper.Flota.model.Avion;
 import skyscraper.Flota.repository.AvionRepository;
 
-import java.beans.Transient;
 import java.util.List;
 
-@SpringBootTest
+@ExtendWith(MockitoExtension.class)
 public class AvionServiceTest {
 
-    @Autowired
+    @InjectMocks
     private AvionService avionService;
 
     @Mock
@@ -30,7 +29,7 @@ public class AvionServiceTest {
     @Test
     public void testGetAvionesByAerolineaId() {
         // probar que llame el avion si existe un avion con el id de aerolinea
-        when(avionRepository.findById(1L)).thenReturn(java.util.Optional.of(Avion.builder().id(1L).modelo("Boeing 737").build()));
+        when(avionRepository.findAvionesByAerolineaId(1L)).thenReturn(List.of(Avion.builder().id(1L).modelo("Boeing 737").build()));
         Avion avion = avionService.getAvionesByAerolineaId(1L).stream().findFirst().orElse(null);
         assert avion != null;
         assert avion.getId() == 1L;

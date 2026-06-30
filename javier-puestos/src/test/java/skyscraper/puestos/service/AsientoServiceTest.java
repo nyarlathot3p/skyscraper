@@ -3,23 +3,23 @@ package skyscraper.puestos.service;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-import org.apiguardian.api.API;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.mockito.junit.jupiter.MockitoExtension;
 import skyscraper.puestos.model.Asiento;
 import skyscraper.puestos.repository.AsientosRepository;
 import skyscraper.puestos.model.Clase;
 import skyscraper.puestos.model.Posicion;
 
-import java.beans.Transient;
 import java.util.List;
 
-@SpringBootTest
+import java.util.Optional;
 
+@ExtendWith(MockitoExtension.class)
 public class AsientoServiceTest {
-    @Autowired
+    @InjectMocks
     private AsientoService asientoService;
 
     @Mock
@@ -64,19 +64,25 @@ public class AsientoServiceTest {
     @Test
     public void testOcuparAsiento() {
         Long asientoId = 1L;
+        Asiento asiento = Asiento.builder().id(asientoId).build();
+        when(asientoRepository.findById(asientoId)).thenReturn(Optional.of(asiento));
         doNothing().when(asientoRepository).ocuparAsiento(asientoId);
 
-        asientoService.ocuparAsiento(asientoId);
+        boolean result = asientoService.ocuparAsiento(asientoId);
 
+        assertTrue(result);
         verify(asientoRepository, times(1)).ocuparAsiento(asientoId);
     }
     @Test
     public void testDesocuparAsiento() {
         Long asientoId = 1L;
+        Asiento asiento = Asiento.builder().id(asientoId).build();
+        when(asientoRepository.findById(asientoId)).thenReturn(Optional.of(asiento));
         doNothing().when(asientoRepository).desocuparAsiento(asientoId);
 
-        asientoService.desocuparAsiento(asientoId);
+        boolean result = asientoService.desocuparAsiento(asientoId);
 
+        assertTrue(result);
         verify(asientoRepository, times(1)).desocuparAsiento(asientoId);
     }
 

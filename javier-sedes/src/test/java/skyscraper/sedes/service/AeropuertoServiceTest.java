@@ -3,11 +3,11 @@ package skyscraper.sedes.service;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-import org.apiguardian.api.API;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.mockito.junit.jupiter.MockitoExtension;
 import skyscraper.sedes.model.Aeropuerto;
 import skyscraper.sedes.repository.AeropuertoRepository;
 import skyscraper.sedes.service.AeropuertoService;
@@ -16,14 +16,12 @@ import skyscraper.sedes.controller.SedesController;
 import skyscraper.sedes.dto.CiudadDTO;
 import skyscraper.sedes.dto.RegionDTO;
 
-import java.beans.Transient;
 import java.util.List;
 
-@SpringBootTest
-
+@ExtendWith(MockitoExtension.class)
 public class AeropuertoServiceTest {
 
-    @Autowired
+    @InjectMocks
     private AeropuertoService aeropuertoService;
 
     @Mock
